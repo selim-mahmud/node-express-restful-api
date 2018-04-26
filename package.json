@@ -1,0 +1,14 @@
+{
+  "name": "node-express-restful-api",
+  "version": "1.0.0",
+  "description": "This is a RESTful API for a demo application called QA. QA is a queation-answer application. This has been build using Node, Express and PostgreSQL.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Selim Mahmud",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3"
+  }
+}
