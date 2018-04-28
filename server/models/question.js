@@ -18,6 +18,8 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey: 'user_id',
             onDelete: 'CASCADE',
         });
+
+        question.belongsToMany(models.tag, {through: 'questionTag'});
     };
     return question;
 };

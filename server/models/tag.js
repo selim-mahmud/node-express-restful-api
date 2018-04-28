@@ -8,7 +8,7 @@ module.exports = (sequelize, dataTypes) => {
         updated_at: dataTypes.DATE,
     }, {});
     tag.associate = function (models) {
-        
+        tag.belongsToMany(models.question, {through: 'questionTag'});
     };
     return tag;
 };
