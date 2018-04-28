@@ -9,7 +9,7 @@ app.use(morgan('combined'));
 app.use(bodyParser.json({type: '*/*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
-require('./routers/authRoutes')(app);
+require('./server/routers/authRoutes')(app);
 
 
 //Server setup
