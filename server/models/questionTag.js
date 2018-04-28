@@ -6,5 +6,5 @@ module.exports = (sequelize, dataTypes) => {
     questionTag.associate = function (models) {
 
     };
-    return tag;
+    return questionTag;
 };

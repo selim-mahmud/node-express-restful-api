@@ -2,17 +2,17 @@ module.exports = {
     up: (queryInterface, Sequelize) => {
         return queryInterface.createTable('tags', {
             id: {
-                type: Sequelize.INTEGER,
                 allowNull: false,
+                autoIncrement: true,
                 primaryKey: true,
-                autoIncrement: true
+                type: Sequelize.INTEGER
             },
             name: {
-                type: Sequelize.string,
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             slug: {
-                type: Sequelize.string,
+                type: Sequelize.STRING,
                 allowNull: false,
             },
             active: {
