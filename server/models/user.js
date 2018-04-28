@@ -10,7 +10,13 @@ module.exports = (sequelize, dataTypes) => {
         updated_at: dataTypes.DATE,
     }, {});
     user.associate = function (models) {
+
         user.hasMany(models.question, {
+            foreignKey: 'user_id',
+            as: 'users',
+        });
+
+        user.hasMany(models.answer, {
             foreignKey: 'user_id',
             as: 'users',
         });
