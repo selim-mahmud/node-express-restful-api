@@ -21,19 +21,19 @@ module.exports = {
                 allowNull: false,
                 defaultValue: false,
             },
-            activation_token: {
+            activationToken: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            remember_token: {
+            rememberToken: {
                 type: Sequelize.STRING,
                 allowNull: true,
             },
-            created_at: {
+            createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
-            updated_at: {
+            updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             }

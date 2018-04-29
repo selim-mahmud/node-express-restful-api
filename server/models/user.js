@@ -1,4 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
+
     let user = sequelize.define('user', {
         id: {
             type: dataTypes.INTEGER,
@@ -20,19 +21,19 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
             defaultValue: false,
         },
-        activation_token: {
+        activationToken: {
             type: dataTypes.STRING,
             allowNull: true,
         },
-        remember_token: {
+        rememberToken: {
             type: dataTypes.STRING,
             allowNull: true,
         },
-        created_at: {
+        createdAt: {
             type: dataTypes.DATE,
             allowNull: false
         },
-        updated_at: {
+        updatedAt: {
             type: dataTypes.DATE,
             allowNull: false
         }

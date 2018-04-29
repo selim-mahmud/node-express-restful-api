@@ -19,11 +19,11 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
             defaultValue: false,
         },
-        created_at: {
+        createdAt: {
             type: dataTypes.DATE,
             allowNull: false
         },
-        updated_at: {
+        updatedAt: {
             type: dataTypes.DATE,
             allowNull: false
         }

@@ -6,13 +6,13 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
-        user_id: {
+        userId: {
             type: dataTypes.INTEGER,
             onDelete: 'CASCADE',
             references: {
                 model: 'users',
                 key: 'id',
-                as: 'user_id',
+                as: 'userId',
                 deferrable: sequelize.Deferrable.INITIALLY_IMMEDIATE
             }
         },
@@ -44,28 +44,28 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false,
             defaultValue: false,
         },
-        up_vote: {
+        upVote: {
             type: dataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,
         },
-        down_vote: {
+        downVote: {
             type: dataTypes.INTEGER,
             allowNull: false,
             defaultValue: 0,
         },
-        created_at: {
+        createdAt: {
             allowNull: false,
             type: dataTypes.DATE
         },
-        updated_at: {
+        updatedAt: {
             allowNull: false,
             type: dataTypes.DATE
         }
     }, {});
     question.associate = function (models) {
         question.belongsTo(models.user, {
-            foreignKey: 'user_id',
+            foreignKey: 'userId',
             onDelete: 'CASCADE',
         });
 

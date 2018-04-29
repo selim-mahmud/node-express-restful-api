@@ -1,29 +1,29 @@
 module.exports = {
     up: (queryInterface, Sequelize) => {
-        return queryInterface.createTable('question_tag', {
-            question_id: {
+        return queryInterface.createTable('questionTag', {
+            questionId: {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 references: {
                     model: 'questions',
                     key: 'id',
-                    as: 'question_id',
+                    as: 'questionId',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
-            tag_id: {
+            tagId: {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 references: {
                     model: 'tags',
                     key: 'id',
-                    as: 'tag_id',
+                    as: 'tagId',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             }
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('question_tag');
+        return queryInterface.dropTable('questionTag');
     }
 };

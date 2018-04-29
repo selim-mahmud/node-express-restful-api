@@ -7,13 +7,13 @@ module.exports = {
                 primaryKey: true,
                 autoIncrement: true
             },
-            user_id: {
+            userId: {
                 type: Sequelize.INTEGER,
                 onDelete: 'CASCADE',
                 references: {
                     model: 'users',
                     key: 'id',
-                    as: 'user_id',
+                    as: 'userId',
                     deferrable: Sequelize.Deferrable.INITIALLY_IMMEDIATE
                 }
             },
@@ -45,21 +45,21 @@ module.exports = {
                 allowNull: false,
                 defaultValue: false,
             },
-            up_vote: {
+            upVote: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 defaultValue: 0,
             },
-            down_vote: {
+            downVote: {
                 type: Sequelize.INTEGER,
                 allowNull: false,
                 defaultValue: 0,
             },
-            created_at: {
+            createdAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             },
-            updated_at: {
+            updatedAt: {
                 allowNull: false,
                 type: Sequelize.DATE
             }

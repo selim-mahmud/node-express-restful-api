@@ -11,6 +11,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 require('./server/routers/authRoutes')(app);
 require('./server/routers/questionRoutes')(app);
+require('./server/routers/userRoutes')(app);
+require('./server/routers/answerRoutes')(app);
 
 
 //Server setup
