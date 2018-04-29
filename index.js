@@ -10,6 +10,7 @@ app.use(bodyParser.json({type: '*/*'}));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 require('./server/routers/authRoutes')(app);
+require('./server/routers/questionRoutes')(app);
 
 
 //Server setup
