@@ -15,22 +15,11 @@ module.exports = {
         const email = req.body.email;
         const password = req.body.password;
 
-        user.findOne({where: {email: email}})
-            .then(existingUser => {
-                if (existingUser) {
-                    return res.status(422).send({
-                        error: 'Email is in use',
-                    });
-                }
-
-                user.create({name, email, password}, {isNewRecord: true})
-                    .then(createdUser => {
-                        return res.status(200).send({
-                            data: createdUser,
-                        });
-                    })
-                    .catch(error => res.status(400).send(error));
-
+        user.create({name, email, password}, {isNewRecord: true})
+            .then(createdUser => {
+                return res.status(200).send({
+                    data: createdUser,
+                });
             })
             .catch(error => res.status(400).send(error));
     },
