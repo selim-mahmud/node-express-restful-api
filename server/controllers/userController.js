@@ -9,8 +9,9 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
-    create(req, res, next){
+    signUp(req, res, next){
 
+        const name = req.body.name;
         const email = req.body.email;
         const password = req.body.password;
 
@@ -22,7 +23,7 @@ module.exports = {
                     });
                 }
 
-                user.create({email, password}, {isNewRecord: true})
+                user.create({name, email, password}, {isNewRecord: true})
                     .then(createdUser => {
                         return res.status(200).send({
                             data: createdUser,
@@ -32,6 +33,10 @@ module.exports = {
 
             })
             .catch(error => res.status(400).send(error));
+    },
+
+    create(req, res, next){
+        //
     },
 
     retrieve(req, res) {

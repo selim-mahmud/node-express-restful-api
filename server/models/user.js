@@ -7,27 +7,91 @@ module.exports = (sequelize, dataTypes) => {
             primaryKey: true,
             autoIncrement: true
         },
+        name: {
+            type: dataTypes.STRING,
+            allowNull: false,
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "Name field is required."
+                },
+                len: {
+                    args: [3, 255],
+                    msg: "Name must be between 3 to 255 characters long."
+                },
+                is: {
+                    args: /^[a-z\d\-_\s]+$/i,
+                    msg: "Name must only contain letters, numbers, - and _."
+                }
+            }
+        },
         email: {
             type: dataTypes.STRING,
             allowNull: false,
             unique: true,
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "Email field is required."
+                },
+                isEmail: {
+                    args: true,
+                    msg: 'This field must be a valid email.'
+                },
+                len: {
+                    args: [5, 255],
+                    msg: "Name must be between 5 to 255 characters long."
+                }
+            }
         },
         password: {
             type: dataTypes.STRING,
             allowNull: false,
+            validate: {
+                notEmpty: {
+                    args: true,
+                    msg: "Email field is required."
+                },
+                len: {
+                    args: [6, 255],
+                    msg: "Password must be between 6 to 255 characters."
+                },
+                is: {
+                    args: /^[a-z\d\-_~!@#$%^&*()\s]+$/i,
+                    msg: "Name must only contain letters, numbers and special characters."
+                }
+            }
         },
         active: {
             type: dataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: false,
+            validate: {
+                isIn: {
+                    args: [[true, false]],
+                    msg: 'active field must be boolean.'
+                }
+            }
         },
         activationToken: {
             type: dataTypes.STRING,
             allowNull: true,
+            validate: {
+                len: {
+                    args: [10, 255],
+                    msg: "activationToken must be between 10 to 255 characters."
+                }
+            }
         },
         rememberToken: {
             type: dataTypes.STRING,
             allowNull: true,
+            validate: {
+                len: {
+                    args: [10, 255],
+                    msg: "rememberToken must be between 10 to 255 characters."
+                }
+            }
         },
         createdAt: {
             type: dataTypes.DATE,
@@ -39,11 +103,6 @@ module.exports = (sequelize, dataTypes) => {
         }
     }, {});
     user.associate = function (models) {
-
-        // user.hasMany(models.question, {
-        //     foreignKey: 'user_id',
-        //     as: 'users',
-        // });
 
         user.hasMany(models.answer, {
             foreignKey: 'user_id',
