@@ -9,20 +9,7 @@ module.exports = {
             .catch(error => res.status(400).send(error));
     },
 
-    signUp(req, res, next){
 
-        const name = req.body.name;
-        const email = req.body.email;
-        const password = req.body.password;
-
-        user.create({name, email, password}, {isNewRecord: true})
-            .then(createdUser => {
-                return res.status(200).send({
-                    data: createdUser,
-                });
-            })
-            .catch(error => res.status(400).send(error));
-    },
 
     create(req, res, next){
         //

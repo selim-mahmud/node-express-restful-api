@@ -1,8 +1,7 @@
+const authController = require('../controllers').authController;
+const requireSignin = require('../middlewares/auth').requireSignin;
 
 module.exports = app => {
-    app.get('/api/test', (req, res, next) => {
-        res.status(200).send({
-            message: 'Welcome to my app.'
-        });
-    });
+    app.post('/api/auth/signup', authController.signup);
+    app.post('/api/auth/signin', requireSignin, authController.signin);
 }

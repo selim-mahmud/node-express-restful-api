@@ -139,6 +139,14 @@ module.exports = (sequelize, dataTypes) => {
             });
     });
 
+    user.prototype.comparePassword = (candidatePassword, callback) => {
+        bcrypt.compare(candidatePassword, user.password, (err, isMatch) => {
+            if(err){return callback(err);}
+
+            callback(null, isMatch);
+        });
+    };
+
     return user;
 };
 
