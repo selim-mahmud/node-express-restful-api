@@ -3,21 +3,35 @@ const user = require('../models').user;
 module.exports = {
 
     list(req, res) {
-        return user
-            .findAll({})
-            .then(users => res.status(200).send(users))
+
+        user.findAll({})
+            .then(users => {
+                return res.status(200).send(users);
+            })
+            .catch(error => {
+                return res.status(400).send(error);
+            });
+    },
+
+    create(req, res){
+
+        const name = req.body.name;
+        const email = req.body.email;
+        const password = req.body.password;
+
+        user.create({name, email, password}, {isNewRecord: true})
+            .then(createdUser => {
+
+                return res.status(200).send({
+                    data: createdUser,
+                });
+            })
             .catch(error => res.status(400).send(error));
     },
 
-
-
-    create(req, res, next){
-        //
-    },
-
     retrieve(req, res) {
-        return user
-            .findById(req.params.userId, {})
+
+        user.findById(req.params.userId, {})
             .then(user => {
                 if (!user) {
                     return res.status(404).send({
@@ -26,25 +40,51 @@ module.exports = {
                 }
                 return res.status(200).send(user);
             })
-            .catch(error => res.status(400).send(error));
+            .catch(error => {
+                return res.status(400).send(error);
+            });
     },
+
     update(req, res) {
-        //
-    },
-    destroy(req, res) {
-        return user
-            .findById(req.params.userId)
-            .then(user => {
-                if (!user) {
-                    return res.status(400).send({
-                        message: 'User not found',
+
+        user.findById(req.params.userId)
+            .then(currentUser => {
+
+                if (!currentUser) {
+                    return res.status(404).send({
+                        message: 'User Not Found',
                     });
                 }
-                return user
-                    .destroy()
-                    .then(() => res.status(204).send())
-                    .catch(error => res.status(400).send(error));
+
+                user.update({
+                        name: req.body.name || user.name,
+                        email: req.body.email || user.email,
+                        password: req.body.password || user.password,
+                        active: req.body.active || user.active,
+                        activationToken: req.body.activationToken || user.activationToken,
+                        rememberToken: req.body.rememberToken || user.rememberToken,
+                    })
+                    .then(() => {return res.status(200).send(user);})
+                    .catch((error) => {return res.status(400).send(error);});
             })
-            .catch(error => res.status(400).send(error));
+            .catch((error) => {return res.status(400).send(error)});
+    },
+
+    destroy(req, res) {
+
+        user.findById(req.params.userId)
+            .then(currentUser => {
+
+                if (!currentUser) {
+                    return res.status(404).send({
+                        message: 'User Not Found',
+                    });
+                }
+
+                user.destroy()
+                    .then(() => {return res.status(204).send();})
+                    .catch((error) => {return res.status(400).send(error);});
+            })
+            .catch((error) => {return res.status(400).send(error)});
     },
 };
